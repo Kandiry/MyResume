@@ -1,0 +1,10 @@
+Создать новую базу данных
+СREATE DATABASE testBase;
+
+
+Создать таблицу Customer
+СREATE TABLE Customer;
+
+Вывести все значентия из таблицы Customer
+SELECT * FROM Customer;
+
