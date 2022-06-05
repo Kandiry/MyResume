@@ -1,10 +1,40 @@
-Создать новую базу данных
-СREATE DATABASE testBase;
+CREATE DATABASE BSPBANK;
 
+USE BSPBANK;
 
-Создать таблицу Customer
-СREATE TABLE Customer;
+CREATE TABLE Users (
+id int NOT NULL primary key,
+profile_id INT,
+login VARCHAR(50) NOT NULL,
+password VARCHAR(50) NOT NULL,
+FOREIGN KEY Users (profile_id) REFERENCES Profiles (id)
+);
 
-Вывести все значентия из таблицы Customer
-SELECT * FROM Customer;
+CREATE TABLE Profiles (
+id int NOT NULL primary key,
+name VARCHAR(50) NOT NULL
+);
 
+CREATE TABLE Balance (
+id INT NOT NULL PRIMARY KEY,
+balance DECIMAL,
+user_id INT,
+FOREIGN KEY Balance (user_id) REFERENCES Users (id)
+);
+
+CREATE TABLE Message (
+id INT NOT NULL,
+message TEXT NOT NULL,
+user_id INT,
+FOREIGN KEY Message (user_id) REFERENCES Users (id)
+);
+
+SHOW TABLES;
+
+INSERT INTO Profiles (id, name) VALUES (1, 'Valentina Romanova'), (2, 'Aleksey Sushkov'), (3, 'Rodionov Nikolay');
+
+INSERT INTO Users (id, profile_id, login, password) VALUES (1, 1, 'valera', '1111'), (2, 2, 'alex', '2222'), (3, 3, 'koliay', '3333');
+
+INSERT INTO Balance (id, balance, user_id) VALUES (1, '90000.00', 1), (2, '40000.00', 2), (3, '60000.00', 3);
+
+INSERT INTO Message (id, message, user_id) VALUES (1, 'Help!?', 1), (2, 'My balance?', 1), (2, 'SWIFT?', 2), (3, 'Hello', 3), (4, 'my card blocked?', 1);
